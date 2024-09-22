@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="img/zombie/Zombie_Villager_3/PNG/Vector Parts/Face 01.png" type="image/x-icon">
+
+    <!-- <script src="https://kit.fontawesome.com/e978d994d5.js" crossorigin="anonymous"></script> -->
+
+    <script src="/models/drawable-object.class.js"></script>
+    <script src="/models/movable-object.class.js"></script>
+    <script src="/models/character.class.js"></script>
+    <script src="/models/zombie1.class.js"></script>
+    <script src="/models/zombie2.class.js"></script>
+    <script src="/models/cloud.class.js"></script>
+    <script src="/models/dagger.class.js"></script>
+    <script src="/models/status-bar-char.class.js"></script>
+    <script src="/models/status-bar-boss.class.js"></script>
+    <script src="/models/dagger-counter.class.js"></script>
+    <script src="/models/world.class.js"></script>
+    <script src="/models/background-object.class.js"></script>
+    <script src="/models/keyboard.class.js"></script>
+    <script src="/models/level.class.js"></script>
+    <script src="/models/endboss.class.js"></script>
+    <script src="/models/throwable-object.class.js"></script>
+    <script src="/levels/level1.js"></script>
+    <script src="/js/game.js"></script>
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+    <title>World of World.class</title>
+</head>
+
+<body onload="init()">
+
+    <section id="content">
+        <header>
+            <div class="title">
+                <h1>World of World</h1>
+                <p>.class</p>
+            </div>
+            <h3 style="color: rgb(224, 150, 11);">Invasion of the undead</h3>
+        </header>
+
+        <canvas id="canvasStartScreen" width="720" height="480">
+
+        </canvas>
+
+
+        <canvas id="canvasGame" width="720" height="480" style="display: none;">
+
+        </canvas>
+
+        <canvas id="canvasFailScreen" width="720" height="480">
+
+        </canvas>
+
+        <section class="key-legend-section">
+            <div class="key-legend-headline">
+                <h2>Key Legend</h2>
+            </div>
+
+            <section class="key-legend-and-game-rules-btn">
+                <section class="key-legend">
+                    <div class="explain-key">
+                        <h3>A -</h3>
+                        <span>walk left</span>
+                    </div>
+
+                    <div class="explain-key">
+                        <h3>D -</h3>
+                        <span>walk right</span>
+                    </div>
+
+                    <div class="explain-key">
+                        <h3>SPACE -</h3><span>jump</span>
+                    </div>
+
+                    <div class="explain-key">
+                        <h3>ENTER -</h3>
+                        <span>throw dagger</span>
+                    </div>
+                </section>
+
+                <button onclick="openGameRules()" class="btn">
+                    <h3>game rules</h3>
+                </button>
+            </section>
+        </section>
+    </section>
+
+</body>
+
+</html>
