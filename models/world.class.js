@@ -34,17 +34,16 @@ class World {
                     if (dagger.isColliding(enemy) && !enemy.dead()) {
                         enemy.getHit();
                         // Optional: Entferne den Dolch nach der Kollision, wenn er den Gegner trifft
-                        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                         // console.log('Endboss HP:', this.endboss.hp);
+                        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                     }
-                    
+
                     if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
                         this.endboss.getHit();
                         this.statusBarBoss.setPercentage(this.endboss.hp);
+                        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                     }
-                    
-                    
-                    
+
                 });
                 // Prüfe, ob der Charakter auf den Gegner springt
                 if (this.character.jumpOnEnemy(enemy)) {
@@ -57,9 +56,9 @@ class World {
                 else if (this.character.isColliding(enemy) && !this.character.isHurt() && !this.character.isInAir() && !enemy.dead()) {
                     this.character.getHit();
                     this.statusBarChar.setPercentage(this.character.hp);
-                    
+
                 }
-                
+
             });
         }, 1000 / 20);
 
