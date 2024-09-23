@@ -11,7 +11,7 @@ class MovableObject extends DrawableObject {
 
 
     moveLeft() {
-        if (!this.dead()) {
+        if (this.notDeadOrHurt()) {
             this.positionX -= this.speedX;
             this.otherDirection = true;
         }
@@ -67,6 +67,14 @@ class MovableObject extends DrawableObject {
         // obj.onCollisionCourse;  Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
+    isCollidingWithBoss(obj) {
+        return this.positionX + (this.width * 0.1)>= obj.positionX &&
+            this.positionX <= (obj.positionX + (obj.width * 0.1)) &&
+            (this.positionY + this.height) >= obj.positionY &&
+            this.positionY <= (obj.positionY + obj.height);
+        // obj.onCollisionCourse;  Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    }
+
     jumpOnEnemy(obj) {
         if (this.isInAir()) {
             return this.positionY + this.height >= obj.positionY &&
@@ -88,7 +96,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;   //Zeit zwischen jetzt und dem letzten Hit (in ms)
         timePassed = timePassed / 1000;     //in s
-        return timePassed < 0.5;
+        return timePassed < 0.8;
     }
 
     dead() {
@@ -105,6 +113,13 @@ class MovableObject extends DrawableObject {
 
     notDeadOrHurt() {
         if (!this.dead() && !this.isHurt()) {
+            return true;
+        }
+        return false;
+    }
+
+    hurtButNotDead() {
+        if (this.isHurt() && !this.dead()) {
             return true;
         }
         return false;

@@ -10,7 +10,7 @@ function getGameRulesContent() {
                     She can only achieve this goal by defeating the great Zombie Leader. <br>
                     But be warned! The path to the final enemy is littered with his zombie army, and they won’t let you pass so easily. <br><br>
 
-                    - Collect throwing daggers scattered all around <br><br>
+                    - Collect throwable daggers scattered all around <br><br>
                     - Fight the undead army by jumping on the zombies' heads <br><br>
                     - Defeat the Zombie Leader by throwing daggers at him and don’t let yourself get knocked down! <br><br>
                     

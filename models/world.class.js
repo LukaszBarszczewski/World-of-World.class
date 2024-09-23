@@ -12,6 +12,8 @@ class World {
     daggerCounter = new DaggerCounter();
     collectedDaggers = 0;
     collectDaggerSound = new Audio('audio/collect-dagger.mp3');
+    allDaggersCollectedSound = new Audio('audio/all-daggers-collected.mp3');
+    throwingDaggerSound = new Audio('audio/throwing-dagger.mp3');
     throwableObjects = [];
     canThrowDagger = true;
 
@@ -57,7 +59,7 @@ class World {
                     this.characterGetsHurt();
                 }
 
-                else if (this.character.isColliding(this.endboss) && !this.character.isHurt() && !this.endboss.dead()) {
+                else if (this.character.isCollidingWithBoss(this.endboss) && !this.character.isHurt() && !this.endboss.dead()) {
                     this.characterGetsHurt();
                 }
             });
@@ -69,6 +71,9 @@ class World {
                     this.dagger.collect(dagger);
                     this.collectedDaggers++;
                     this.collectDaggerSound.play();
+                    if (this.collectedDaggers === 8) {
+                        this.allDaggersCollectedSound.play();
+                    }
                 }
             })
         }, 1000 / 60);
@@ -88,6 +93,7 @@ class World {
                 this.throwableObjects.push(dagger);
                 this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
                 this.collectedDaggers--;
+                this.throwingDaggerSound.play();
             }
 
             // Wenn die ENTER-Taste losgelassen wird, setze canThrowDagger zurück
@@ -128,8 +134,8 @@ class World {
         this.addToMap(this.statusBarChar);
         this.addToMap(this.statusBarBoss);
         this.addToMap(this.daggerCounter);
-        this.addToMap(this.character);
         this.addToMap(this.endboss);
+        this.addToMap(this.character);
 
         this.drawDaggerCount();
 

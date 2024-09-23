@@ -121,10 +121,8 @@ class Character extends MovableObject {
             }
 
 
-            if (this.isHurt() && !this.dead()) {
+            if (this.hurtButNotDead()) {
                 this.animateImages(this.IMAGES_HURTING);
-
-
 
                 if (!this.soundPlayed) {  // Überprüfe, ob der Sound schon abgespielt wurde
                     this.characterGetsHittedSound.play();

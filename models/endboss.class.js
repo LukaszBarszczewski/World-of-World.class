@@ -49,19 +49,42 @@ class Endboss extends MovableObject {
 
     IMAGES_DYING = [
         'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_001.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_002.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_003.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_004.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_005.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_006.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_007.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_008.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_009.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_010.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_011.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_012.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_013.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_014.png'
+    ];
+
+    IMAGES_AGGRO = [
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_000.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_001.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_002.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_003.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_004.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_005.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_006.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_007.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_008.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_009.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_010.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Slashing/0_Zombie_Villager_Slashing_011.png'
+    ];
+
+    IMAGES_HURTING = [
         'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
-        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_001.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_002.png',
+        'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_001.png',
         'img/zombie/Zombie_Villager_3/PNG/PNG Sequences/Dying/0_Zombie_Villager_Dying_000.png'
     ];
 
@@ -72,60 +95,81 @@ class Endboss extends MovableObject {
     width = 450;
     height = 450;
     distance;
-    speedX = 8;
     goesBack = false;
     hp = 100;
+    aggroActivated = false;
+    hurt = false;
+    hurtSound = new Audio('audio/boss-hurt.mp3');
+    dyingSound = new Audio('audio/boss-dying.mp3');
 
     constructor() {
         super().loadImg(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DYING);
+        this.loadImages(this.IMAGES_AGGRO);
+        this.loadImages(this.IMAGES_HURTING);
 
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-
-            if (this.world && this.world.character) {  // Überprüfen, ob world und character gesetzt sind
+            if (this.world && this.world.character) {
                 this.distance = this.world.calculateDistance();
             }
 
-            if (this.distance >= 300) {
+            if (this.distance >= 280 && !this.aggroActivated) {
                 this.animateImages(this.IMAGES_IDLE);
             }
-            
-            if (!this.goesBack && this.distance <= 300) {
+
+            if (this.distance <= 280 && !this.aggroActivated) {
+                this.animateImages(this.IMAGES_AGGRO);
+                setTimeout(() => {
+                    this.aggroActivated = true;
+                }, this.IMAGES_AGGRO.length * 100);
+            }
+
+            if (!this.goesBack && this.distance <= 360 && this.aggroActivated && !this.dead()) {
                 this.animateImages(this.IMAGES_WALKING);
+                this.speedX = 20;
                 this.moveLeft();
-                if (this.positionX <= 1500) {
+
+                if (this.positionX <= 1700) {
                     this.goesBack = true;
                 }
             }
 
-
-            if (this.goesBack) {
+            if (this.goesBack && !this.dead()) {
                 this.animateImages(this.IMAGES_WALKING);
+                this.speedX = 6;
                 this.moveRight();
                 if (this.positionX >= 2050) {
-                    this.goesBack = false;  // Wieder zum Spieler zurückkehren
+                    this.goesBack = false;
                 }
             }
 
-            // let deathInterval = setInterval(() => {
+            if (this.hurtButNotDead()) {
+                this.animateImages(this.IMAGES_HURTING);
+                this.hurtSound.play();
+                setTimeout(() => {
+                    this.hurt = true;
+                }, this.IMAGES_HURTING.length); 
+            }
+        }, 1000 / 20);
 
-                // if (this.dead()) {
+        let deathInterval = setInterval(() => {
 
-                    
-            //         this.animateImages(this.IMAGES_DYING);
-            //         // this.dyingSound.play();
-            //         // this.zombieMoan.play();
-            //         if (this.currentImg == this.IMAGES_DYING.length) {
-            //             clearInterval(deathInterval);
-                    // }
-            //     }
-            // }, 1000 / 60);
+            if (this.dead()) {
+                this.animateImages(this.IMAGES_DYING);
+                this.dyingSound.play();
+                if (this.currentImg == this.IMAGES_DYING.length) {
+                    clearInterval(deathInterval);
+                }
+                setTimeout(() => {
+                    gameOverWin();
+                }, 2000);
+            }
         }, 1000 / 20);
     }
 }
