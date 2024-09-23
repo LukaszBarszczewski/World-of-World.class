@@ -38,7 +38,7 @@ class World {
                         this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                     }
 
-                    if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
+                    else if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
                         this.endboss.getHit();
                         this.statusBarBoss.setPercentage(this.endboss.hp);
                         this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
@@ -54,11 +54,12 @@ class World {
                 }
                 // Prüfe normale Kollision mit dem Gegner (von der Seite)
                 else if (this.character.isColliding(enemy) && !this.character.isHurt() && !this.character.isInAir() && !enemy.dead()) {
-                    this.character.getHit();
-                    this.statusBarChar.setPercentage(this.character.hp);
-
+                    this.characterGetsHurt();
                 }
 
+                else if (this.character.isColliding(this.endboss) && !this.character.isHurt() && !this.endboss.dead()) {
+                    this.characterGetsHurt();
+                }
             });
         }, 1000 / 20);
 
@@ -72,6 +73,11 @@ class World {
             })
         }, 1000 / 60);
 
+    }
+
+    characterGetsHurt() {
+        this.character.getHit()
+        this.statusBarChar.setPercentage(this.character.hp);
     }
 
     checkThrowObjects() {
