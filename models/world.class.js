@@ -71,7 +71,7 @@ class World {
                     this.dagger.collect(dagger);
                     this.collectedDaggers++;
                     this.collectDaggerSound.play();
-                    if (this.collectedDaggers === 8) {
+                    if (this.collectedDaggers === 13) {
                         this.allDaggersCollectedSound.play();
                     }
                 }
@@ -175,7 +175,7 @@ class World {
 
         this.ctx.drawImage(movableObject.img, movableObject.positionX, movableObject.positionY, movableObject.width, movableObject.height);
 
-        movableObject.drawFrame(this.ctx);
+        // movableObject.drawFrame(this.ctx);
 
         if (movableObject.otherDirection) {
             this.turnBackImg(movableObject);

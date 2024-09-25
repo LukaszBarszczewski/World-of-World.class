@@ -70,8 +70,8 @@ class Zombie2 extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DYING);
 
-        this.positionX = 200 + Math.random() * 1700;
-        this.speedX = this.speedX + Math.random() * 0.5;
+        this.positionX = 200 + Math.random() * 2800;
+        this.speedX = this.speedX + Math.random() * 2;
 
         this.animate();
     }

@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     overflow: hidden;
+    margin: 0;
     font-family: "Cinzel", serif;
     font-optical-sizing: auto;
     background-image: url("img/backgrounds/PNG/Site BG/mountains.png");
@@ -13,6 +14,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+canvas {
+    display: block;
 }
 
 header {
@@ -129,15 +134,32 @@ header {
 
 @keyframes fadeInScale {
     0% {
-      opacity: 0;
-      font-size: 60px;
+        opacity: 0;
+        font-size: 60px;
     }
+
     100% {
-      opacity: 1;
-      font-size: 30px;
+        opacity: 1;
+        font-size: 30px;
     }
-  }
-  
-  .fade-in-scale {
+}
+
+.fade-in-scale {
     animation: fadeInScale 2s ease forwards;
-  }
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    header, .key-legend-section {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}

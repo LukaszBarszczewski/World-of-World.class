@@ -89,7 +89,7 @@ class Endboss extends MovableObject {
     ];
 
     world;
-    positionX = 2050;
+    positionX = 3300;
     positionY = -50;
     otherDirection = true;
     width = 450;
@@ -101,6 +101,7 @@ class Endboss extends MovableObject {
     hurt = false;
     hurtSound = new Audio('audio/boss-hurt.mp3');
     dyingSound = new Audio('audio/boss-dying.mp3');
+    aggroSound = new Audio('audio/endboss-aggro.mp3');
 
     constructor() {
         super().loadImg(this.IMAGES_IDLE[0]);
@@ -125,18 +126,21 @@ class Endboss extends MovableObject {
 
             if (this.distance <= 280 && !this.aggroActivated) {
                 this.animateImages(this.IMAGES_AGGRO);
+                this.aggroSound.play();
                 setTimeout(() => {
                     this.aggroActivated = true;
-                }, this.IMAGES_AGGRO.length * 100);
+                }, this.IMAGES_AGGRO.length * 200);
             }
 
             if (!this.goesBack && this.distance <= 360 && this.aggroActivated && !this.dead()) {
                 this.animateImages(this.IMAGES_WALKING);
                 this.speedX = 20;
                 this.moveLeft();
-
-                if (this.positionX <= 1700) {
+                if (this.positionX <= 2800) {
                     this.goesBack = true;
+                }
+                if (!this.world.character.dead()) {
+                    this.aggroSound.play();
                 }
             }
 
@@ -144,7 +148,7 @@ class Endboss extends MovableObject {
                 this.animateImages(this.IMAGES_WALKING);
                 this.speedX = 6;
                 this.moveRight();
-                if (this.positionX >= 2050) {
+                if (this.positionX >= 3300) {
                     this.goesBack = false;
                 }
             }

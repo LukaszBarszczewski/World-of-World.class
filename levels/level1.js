@@ -5,6 +5,12 @@ function initLevel() {
             new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
             new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
             new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie1('img/zombie/Zombie_Villager_1/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
+            new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
             new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
             new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png'),
             new Zombie2('img/zombie/Zombie_Villager_2/PNG/PNG Sequences/Walking/0_Zombie_Villager_Walking_006.png')
@@ -35,19 +41,27 @@ function initLevel() {
             new BackgroundObject('img/backgrounds/PNG/1/bridge.png', 1400, 160, 720, 315),
             new BackgroundObject('img/backgrounds/PNG/1/bamboo.png', 1400, 80, 720, 400),
             new BackgroundObject('img/backgrounds/PNG/1/bridge.png', 2100, 160, 720, 315),
-            new BackgroundObject('img/backgrounds/PNG/1/bamboo.png', 2100, 80, 720, 400)
+            new BackgroundObject('img/backgrounds/PNG/1/bamboo.png', 2100, 80, 720, 400),
+            new BackgroundObject('img/backgrounds/PNG/1/bridge.png', 2800, 160, 720, 315),
+            new BackgroundObject('img/backgrounds/PNG/1/bamboo.png', 2800, 80, 720, 400),
+            new BackgroundObject('img/backgrounds/PNG/1/bridge.png', 3500, 160, 720, 315),
+            new BackgroundObject('img/backgrounds/PNG/1/bamboo.png', 3500, 80, 720, 400)
         ],
 
         [
             new Dagger('img/throwable_dagger/Dagger.png', 250, 270, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 500, 100, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 600, 20, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 750, 150, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 880, 10, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 950, 15, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 1000, 100, 25, 35),
-            new Dagger('img/throwable_dagger/Dagger.png', 1250, 150, 25, 35)
+            new Dagger('img/throwable_dagger/Dagger.png', 400, 100, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 550, 20, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 700, 150, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 950, 10, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 1100, 15, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 1250, 100, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 1500, 150, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 1750, 10, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 2000, 270, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 2250, 20, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 2500, 100, 25, 35),
+            new Dagger('img/throwable_dagger/Dagger.png', 2750, 150, 25, 35)
         ]
     );
 }
-// TO-DO: die Elemente spiegeln, sodass die Schweißnaht evtl. nicht zu sehen ist
