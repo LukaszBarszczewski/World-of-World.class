@@ -80,7 +80,7 @@ class Character extends MovableObject {
     jumpingSound = new Audio('audio/jump.mp3');
     dyingSound = new Audio('audio/main-char-die.mp3');
     characterGetsHittedSound = new Audio('audio/char-gets-hit.mp3');
-    soundPlayed = false;  // Variable, um zu verfolgen, ob der Sound bereits abgespielt wurde
+    soundPlayed = false;
 
     constructor() {
         super().loadImg(this.IMAGES_WALKING[0]);

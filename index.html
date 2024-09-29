@@ -17,7 +17,6 @@
     <script src="/models/cloud.class.js"></script>
     <script src="/models/dagger.class.js"></script>
     <script src="/models/status-bar-char.class.js"></script>
-    <script src="/models/status-bar-boss.class.js"></script>
     <script src="/models/dagger-counter.class.js"></script>
     <script src="/models/world.class.js"></script>
     <script src="/models/background-object.class.js"></script>
@@ -60,10 +59,29 @@
         <canvas id="canvasFailScreen" width="720" height="480">
 
         </canvas>
-        
+
         <canvas id="canvasWinScreen" width="720" height="480">
 
         </canvas>
+
+        <section class="mobile-keys-section">
+            <div class="mobile-keys-move">
+                <button id="btnMoveLeft" class="mobile-key">
+                    <p>&#9664;</p>
+                </button>
+                <button id="btnMoveRight" class="mobile-key">
+                    <p>&#9654;</p>
+                </button>
+            </div>
+            <div class="mobile-keys-jump-throw">
+                <button id="btnJump" class="mobile-key">
+                    <p>&#9650;</p>
+                </button>
+                <button id="btnThrow" class="mobile-key">
+                    <p style="font-size: 36px">&#8629;</p>
+                </button>
+            </div>
+        </section>
 
         <section class="key-legend-section">
             <div class="key-legend-headline">

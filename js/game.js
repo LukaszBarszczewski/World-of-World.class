@@ -16,6 +16,7 @@ function init() {
     drawStartScreen();
     drawFailScreen();
     drawWinScreen();
+    bindMobileButtons();
 }
 
 function drawStartScreen() {
@@ -70,7 +71,7 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.keyCode == 13) {
         keyboard.ENTER = true;
-        if (canvasStartScreen.style.display !== "none" || canvasFailScreen.style.display === "block" || canvasWinScreen.style.display === "block") {
+        if (canvasStartScreen.style.display !== "none" || canvasFailScreen.style.display !== "none" || canvasWinScreen.style.display !== "none") {
             manageGameStage();
         }
     }
@@ -91,12 +92,53 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+function bindMobileButtons() {
+    document.getElementById('btnMoveLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    
+    document.getElementById('btnMoveLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+    
+    document.getElementById('btnMoveRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    
+    document.getElementById('btnMoveRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+    
+    document.getElementById('btnJump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    
+    document.getElementById('btnJump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+    
+    document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.ENTER = true;
+    });
+    
+    document.getElementById('btnThrow').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.ENTER = false;
+    });
+}
+
 function manageGameStage() {
     initLevel();
     mainMenuMusic.pause();
     inGameSoundtrack.play();
     if (canvasGame.style.display === 'none') {
-        // Blende den Startscreen aus und zeige das Spiel-Canvas an
         canvasStartScreen.style.display = 'none';
         canvasGame.style.display = 'block';
         canvasFailScreen.style.display = 'none';

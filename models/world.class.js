@@ -7,9 +7,9 @@ class World {
     keyboard;
     cameraPositionX = 0;
     statusBarChar = new StatusBarChar();
-    statusBarBoss = new StatusBarBoss();
     dagger = new Dagger();
     daggerCounter = new DaggerCounter();
+    availableDaggers = 0;
     collectedDaggers = 0;
     collectDaggerSound = new Audio('audio/collect-dagger.mp3');
     allDaggersCollectedSound = new Audio('audio/all-daggers-collected.mp3');
@@ -42,7 +42,6 @@ class World {
 
                     else if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
                         this.endboss.getHit();
-                        this.statusBarBoss.setPercentage(this.endboss.hp);
                         this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                     }
 
@@ -69,6 +68,7 @@ class World {
             this.level.daggers.forEach((dagger) => {
                 if (this.character.isColliding(dagger)) {
                     this.dagger.collect(dagger);
+                    this.availableDaggers++;
                     this.collectedDaggers++;
                     this.collectDaggerSound.play();
                     if (this.collectedDaggers === 13) {
@@ -88,11 +88,11 @@ class World {
     checkThrowObjects() {
         setInterval(() => {
             // Wenn die ENTER-Taste gedrückt wird und ein Dolch geworfen werden kann
-            if (this.keyboard.ENTER && !this.character.dead() && this.canThrowDagger && this.collectedDaggers > 0) {
+            if (this.keyboard.ENTER && !this.character.dead() && this.canThrowDagger && this.availableDaggers > 0) {
                 let dagger = new ThrowableObject(this.character.positionX + 100, this.character.positionY);
                 this.throwableObjects.push(dagger);
                 this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
-                this.collectedDaggers--;
+                this.availableDaggers--;
                 this.throwingDaggerSound.play();
             }
 
@@ -132,7 +132,6 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.daggers);
         this.addToMap(this.statusBarChar);
-        this.addToMap(this.statusBarBoss);
         this.addToMap(this.daggerCounter);
         this.addToMap(this.endboss);
         this.addToMap(this.character);
@@ -152,7 +151,7 @@ class World {
     drawDaggerCount() {
         this.ctx.font = "20px Protest Guerrilla";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText(this.collectedDaggers, this.daggerCounter.positionX + this.daggerCounter.width, this.daggerCounter.positionY + 20);
+        this.ctx.fillText(this.availableDaggers, this.daggerCounter.positionX + this.daggerCounter.width, this.daggerCounter.positionY + 20);
     }
 
     addObjectsToMap(objects) {
