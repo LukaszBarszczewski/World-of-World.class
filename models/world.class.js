@@ -94,7 +94,7 @@ class World {
                 this.throwingDaggerSound.play();
             }
 
-            if (!this.keyboard.ENTER) {
+            if (!this.keyboard.ENTER && this.availableDaggers > 0) {
                 this.canThrowDagger = true;
             }
         }, 1000 / 60);

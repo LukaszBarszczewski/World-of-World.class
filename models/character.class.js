@@ -120,7 +120,6 @@ class Character extends MovableObject {
                 this.animateImages(this.IMAGES_WALKING);
             }
 
-
             if (this.hurtButNotDead()) {
                 this.animateImages(this.IMAGES_HURTING);
 

@@ -84,13 +84,10 @@ class Zombie1 extends MovableObject {
             if (!this.dead()) {
                 this.animateImages(this.IMAGES_WALKING);
 
-                if (this.currentImg % 11 === 0 && this.positionX > 0 || !this.dead()) {
-                    this.walking_sound.volume = 0.15;
-                }
-
                 if (this.currentImg >= this.IMAGES_WALKING.length) {
                     this.currentImg = 0;
                 }
+                
             } else {
                 this.animateImages(this.IMAGES_DYING);
                 this.zombieMoan.play();
