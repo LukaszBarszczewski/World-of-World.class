@@ -208,7 +208,7 @@ header {
     height: 50px;
     font-size: 20px;
     text-align: center;
-    background-color: #ccc;
+    background-color: rgb(224, 150, 11);
     border-radius: 50%;
     border: none;
 }
