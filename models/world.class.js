@@ -29,53 +29,82 @@ class World {
 
     checkCollisions() {
         setInterval(() => {
-            // Prüfe Kollisionen mit Feinden
-            this.level.enemies.forEach((enemy) => {
-
-                this.throwableObjects.forEach((dagger) => {
-                    if (dagger.isColliding(enemy) && !enemy.dead()) {
-                        enemy.getHit();
-                        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
-                    }
-
-                    else if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
-                        this.endboss.getHit();
-                        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
-                    }
-
-                });
-
-                if (this.character.jumpOnEnemy(enemy)) {
-                    if (!enemy.dead()) {
-                        this.character.jump();
-                    }
-                    enemy.getHit();
-                }
-
-                else if (this.character.isColliding(enemy) && !this.character.isHurt() && !this.character.isInAir() && !enemy.dead()) {
-                    this.characterGetsHurt();
-                }
-
-                else if (this.character.isCollidingWithBoss(this.endboss) && !this.character.isHurt() && !this.endboss.dead()) {
-                    this.characterGetsHurt();
-                }
-            });
+            this.collisionsWithEnemies();
         }, 1000 / 20);
 
         setInterval(() => {
-            this.level.daggers.forEach((dagger) => {
-                if (this.character.isColliding(dagger)) {
-                    this.dagger.collect(dagger);
-                    this.availableDaggers++;
-                    this.collectedDaggers++;
-                    this.collectDaggerSound.play();
-                    if (this.collectedDaggers === 13) {
-                        this.allDaggersCollectedSound.play();
-                    }
-                }
-            })
+           this.collectDaggers();
         }, 1000 / 60);
+    }
 
+    collectDaggers() {
+        this.level.daggers.forEach((dagger) => {
+            this.increaseAmountOfDaggers(dagger);
+        });
+    }
+
+    increaseAmountOfDaggers(dagger) {
+        if (this.character.isColliding(dagger)) {
+            this.dagger.collect(dagger);
+            this.availableDaggers++;
+            this.collectedDaggers++;
+            this.collectDaggerSound.play();
+            if (this.collectedDaggers === 13) {
+                this.allDaggersCollectedSound.play();
+            }
+        }
+    }
+
+    collisionsWithEnemies() {
+        this.level.enemies.forEach((enemy) => {
+
+            this.throwableObjects.forEach((dagger) => {
+                this.daggerHitAbility(dagger, enemy);
+            });
+
+            this.characterCollisionBehavior(enemy);
+        });
+    }
+
+    daggerHitAbility(dagger, enemy) {
+        if (dagger.isColliding(enemy) && !enemy.dead()) {
+            this.daggerHitsZombie(enemy, dagger);
+        }
+
+        else if (dagger.isColliding(this.endboss) && !this.endboss.dead() && !this.endboss.isHurt()) {
+            this.daggerHitsEndboss(dagger);
+        }
+    }
+
+    characterCollisionBehavior(enemy) {
+        if (this.character.jumpOnEnemy(enemy)) {
+            this.characterBounce(enemy);
+        }
+
+        else if (this.character.isColliding(enemy) && !this.character.isHurt() && !this.character.isInAir() && !enemy.dead()) {
+            this.characterGetsHurt();
+        }
+
+        else if (this.character.isCollidingWithBoss(this.endboss) && !this.character.isHurt() && !this.endboss.dead()) {
+            this.characterGetsHurt();
+        }
+    }
+
+    daggerHitsZombie(enemy, dagger) {
+        enemy.getHit();
+        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
+    }
+
+    daggerHitsEndboss(dagger) {
+        this.endboss.getHit();
+        this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
+    }
+
+    characterBounce(enemy) {
+        if (!enemy.dead()) {
+            this.character.jump();
+        }
+        enemy.getHit();
     }
 
     characterGetsHurt() {
@@ -85,19 +114,22 @@ class World {
 
     checkThrowObjects() {
         setInterval(() => {
-            // Wenn die ENTER-Taste gedrückt wird und ein Dolch geworfen werden kann
             if (this.keyboard.ENTER && !this.character.dead() && this.canThrowDagger && this.availableDaggers > 0) {
-                let dagger = new ThrowableObject(this.character.positionX + 100, this.character.positionY);
-                this.throwableObjects.push(dagger);
-                this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
-                this.availableDaggers--;
-                this.throwingDaggerSound.play();
+                this.throwDagger();
             }
 
             if (!this.keyboard.ENTER && this.availableDaggers > 0) {
                 this.canThrowDagger = true;
             }
         }, 1000 / 60);
+    }
+
+    throwDagger() {
+        let dagger = new ThrowableObject(this.character.positionX + 100, this.character.positionY);
+                this.throwableObjects.push(dagger);
+                this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
+                this.availableDaggers--;
+                this.throwingDaggerSound.play();
     }
 
     calculateDistance() {
