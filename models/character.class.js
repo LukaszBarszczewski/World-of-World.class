@@ -124,16 +124,16 @@ class Character extends MovableObject {
             if (this.hurtButNotDead()) {
                 this.animateImages(this.IMAGES_HURTING);
 
-                if (!this.soundPlayed) {  // Überprüfe, ob der Sound schon abgespielt wurde
+                if (!this.soundPlayed) {
                     this.characterGetsHittedSound.play();
-                    this.soundPlayed = true;  // Setze die Variable auf true, damit der Sound nur einmal abgespielt wird
+                    this.soundPlayed = true;
                 }
 
                 if (this.positionX > 55) {
                     this.positionX -= 15 - this.speedX;
                 }
             } else {
-                this.soundPlayed = false;  // Setze die Variable zurück, wenn der Charakter nicht mehr verletzt ist
+                this.soundPlayed = false;
             }
 
             this.world.cameraPositionX = -this.positionX + 50;

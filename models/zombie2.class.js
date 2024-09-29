@@ -62,7 +62,6 @@ class Zombie2 extends MovableObject {
 
     hp = 20;
     otherDirection = true;
-    walking_sound = new Audio('audio/zombie-step.mp3');
 
     constructor(imgPath) {
         super().loadImg(imgPath);
@@ -85,8 +84,7 @@ class Zombie2 extends MovableObject {
             if (!this.dead()) {
                 this.animateImages(this.IMAGES_WALKING);
 
-                if (this.currentImg % 11 === 0 && this.positionX > 0 || !this.dead()) { // Sound alle 11 Bilder abspielen
-                    // this.walking_sound.play();
+                if (this.currentImg % 11 === 0 && this.positionX > 0 || !this.dead()) {
                     this.walking_sound.volume = 0.15;
                 }
 

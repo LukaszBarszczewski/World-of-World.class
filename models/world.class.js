@@ -35,8 +35,6 @@ class World {
                 this.throwableObjects.forEach((dagger) => {
                     if (dagger.isColliding(enemy) && !enemy.dead()) {
                         enemy.getHit();
-                        // Optional: Entferne den Dolch nach der Kollision, wenn er den Gegner trifft
-                        // console.log('Endboss HP:', this.endboss.hp);
                         this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
                     }
 
@@ -46,14 +44,14 @@ class World {
                     }
 
                 });
-                // Prüfe, ob der Charakter auf den Gegner springt
+
                 if (this.character.jumpOnEnemy(enemy)) {
                     if (!enemy.dead()) {
                         this.character.jump();
                     }
                     enemy.getHit();
                 }
-                // Prüfe normale Kollision mit dem Gegner (von der Seite)
+
                 else if (this.character.isColliding(enemy) && !this.character.isHurt() && !this.character.isInAir() && !enemy.dead()) {
                     this.characterGetsHurt();
                 }
@@ -96,15 +94,14 @@ class World {
                 this.throwingDaggerSound.play();
             }
 
-            // Wenn die ENTER-Taste losgelassen wird, setze canThrowDagger zurück
             if (!this.keyboard.ENTER) {
                 this.canThrowDagger = true;
             }
-        }, 1000 / 60); // Regelmäßig überprüfen, z.B. alle 16ms (60fps)
+        }, 1000 / 60);
     }
 
     calculateDistance() {
-        if (this.endboss && this.character) {  // Sicherstellen, dass world und character existieren
+        if (this.endboss && this.character) {  // Sicherstellen, dass endboss und character existieren
             return Math.abs(this.character.positionX - this.endboss.positionX);
         }
         return Infinity;  // Rückgabe eines Standardwerts, falls character noch nicht gesetzt ist
@@ -160,21 +157,13 @@ class World {
         });
     }
 
-    // NOTES!
-
     addToMap(movableObject) {
 
         if (movableObject.otherDirection) {
             this.turnImgOneEighty(movableObject);
         }
 
-        // if (movableObject.nineZeroDegTurn) {
-        //     this.turnImgNinety(movableObject);
-        // }
-
         this.ctx.drawImage(movableObject.img, movableObject.positionX, movableObject.positionY, movableObject.width, movableObject.height);
-
-        // movableObject.drawFrame(this.ctx);
 
         if (movableObject.otherDirection) {
             this.turnBackImg(movableObject);
@@ -187,13 +176,6 @@ class World {
         this.ctx.scale(-1, 1);
         movableObject.positionX = movableObject.positionX * -1;
     }
-
-    // turnImgNinety(movableObject){
-    //     this.ctx.save();
-    //     this.ctx.translate(movableObject.width, 0);
-    //     this.ctx.scale(-1, 1);
-    //     movableObject.positionX = movableObject.positionX * -1;
-    // }
 
     turnBackImg(movableObject) {
         movableObject.positionX = movableObject.positionX * -1;
