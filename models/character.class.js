@@ -93,64 +93,18 @@ class Character extends MovableObject {
     }
 
     animate() {
-
         setInterval(() => {
             this.walkingSound.pause();
-            if (this.world.keyboard.RIGHT && this.positionX < this.world.level.level_end_x + 50) {
-                this.moveRight();
-            }
-
-            if (this.world.keyboard.LEFT && this.notDeadOrHurt()) {
-                if (this.positionX > 50) {
-                    this.moveLeft();
-                    if (!this.isInAir()) {
-                        this.walkingSound.play();
-                    }
-                }
-                this.otherDirection = true;
-            }
-
-            if (this.world.keyboard.SPACE && this.notInAirDeadOrHurt()) {
-                this.jump();
-                this.jumpingSound.play();
-            }
-
-
-            if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.notInAirDeadOrHurt()) {
-                this.animateImages(this.IMAGES_WALKING);
-            }
-
-            if (this.hurtButNotDead()) {
-                this.animateImages(this.IMAGES_HURTING);
-
-                if (!this.soundPlayed) {
-                    this.characterGetsHittedSound.play();
-                    this.soundPlayed = true;
-                }
-
-                if (this.positionX > 55) {
-                    this.positionX -= 15 - this.speedX;
-                }
-            } else {
-                this.soundPlayed = false;
-            }
+            this.characterMoves();
+            this.characterJumps();
+            this.movingAnimations();
+            this.characterGetsHurt();
 
             this.world.cameraPositionX = -this.positionX + 50;
         }, 1000 / 60);
 
         let deathInterval = setInterval(() => {
-
-            if (this.dead()) {
-                this.animateImages(this.IMAGES_DYING);
-                this.dyingSound.play();
-                this.zombieMoan.play();
-                if (this.currentImg == this.IMAGES_DYING.length) {
-                    clearInterval(deathInterval);
-                }
-                setTimeout(() => {
-                    gameOverFail();
-                }, 2000);
-            }
+            this.characterDies(deathInterval);
         }, 1000 / 60);
 
         setInterval(() => {
@@ -158,5 +112,75 @@ class Character extends MovableObject {
                 this.animateImages(this.IMAGES_JUMPING);
             }
         }, 1000 / 20);
+    }
+
+    characterMoves() {
+        if (this.world.keyboard.RIGHT && this.positionX < this.world.level.level_end_x + 50) {
+            this.moveRight();
+        }
+
+        if (this.world.keyboard.LEFT && this.notDeadOrHurt()) {
+            this.characterMovesLeft();
+            this.otherDirection = true;
+        }
+    }
+
+    characterMovesLeft() {
+        if (this.positionX > 50) {
+                this.moveLeft();
+                if (!this.isInAir()) {
+                    this.walkingSound.play();
+                }
+            }
+    }
+
+    characterJumps() {
+        if (this.world.keyboard.SPACE && this.notInAirDeadOrHurt()) {
+            this.jump();
+            this.jumpingSound.play();
+        }
+    }
+
+    movingAnimations() {
+        if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.notInAirDeadOrHurt()) {
+            this.animateImages(this.IMAGES_WALKING);
+        }
+    }
+
+    characterGetsHurt() {
+        if (this.hurtButNotDead()) {
+            this.animateImages(this.IMAGES_HURTING);
+            this.hurtSound()
+            this.knockBack();
+        } else {
+            this.soundPlayed = false;
+        }
+    }
+
+    hurtSound() {
+        if (!this.soundPlayed) {
+            this.characterGetsHittedSound.play();
+            this.soundPlayed = true;
+        }
+    }
+
+    knockBack() {
+        if (this.positionX > 55) {
+            this.positionX -= 15 - this.speedX;
+        }
+    }
+
+    characterDies(deathInterval) {
+        if (this.dead()) {
+            this.animateImages(this.IMAGES_DYING);
+            this.dyingSound.play();
+            this.zombieMoan.play();
+            if (this.currentImg == this.IMAGES_DYING.length) {
+                clearInterval(deathInterval);
+            }
+            setTimeout(() => {
+                gameOverFail();
+            }, 2000);
+        }
     }
 }
