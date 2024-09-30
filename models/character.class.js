@@ -108,9 +108,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isInAir()) {
-                this.animateImages(this.IMAGES_JUMPING);
-            }
+            this.jumpingAnimation();
         }, 1000 / 20);
     }
 
@@ -122,6 +120,12 @@ class Character extends MovableObject {
         if (this.world.keyboard.LEFT && this.notDeadOrHurt()) {
             this.characterMovesLeft();
             this.otherDirection = true;
+        }
+    }
+
+    jumpingAnimation() {
+        if (this.isInAir()) {
+            this.animateImages(this.IMAGES_JUMPING);
         }
     }
 
@@ -150,7 +154,7 @@ class Character extends MovableObject {
     characterGetsHurt() {
         if (this.hurtButNotDead()) {
             this.animateImages(this.IMAGES_HURTING);
-            this.hurtSound()
+            this.hurtSound();
             this.knockBack();
         } else {
             this.soundPlayed = false;
