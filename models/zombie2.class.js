@@ -70,7 +70,7 @@ class Zombie2 extends MovableObject {
         this.loadImages(this.IMAGES_DYING);
 
         this.positionX = 200 + Math.random() * 2800;
-        this.speedX = this.speedX + Math.random() * 2;
+        this.speedX = this.speedX + Math.random() * 0.5;
 
         this.animate();
     }
@@ -81,21 +81,33 @@ class Zombie2 extends MovableObject {
         }, 1000 / 60);
 
         let deathInterval = setInterval(() => {
-            if (!this.dead()) {
-                this.animateImages(this.IMAGES_WALKING);
-
-                if (this.currentImg >= this.IMAGES_WALKING.length) {
-                    this.currentImg = 0;
-                }
-                
-            } else {
-                this.animateImages(this.IMAGES_DYING);
-                this.zombieMoan.play();
-                this.breakBone.play();
-                if (this.currentImg == this.IMAGES_DYING.length) {
-                    clearInterval(deathInterval);
-                }
-            }
+            this.zombieMovesOrDies(deathInterval);
         }, 1000 / 60);
+    }
+
+    zombieMovesOrDies(deathInterval) {
+        if (!this.dead()) {
+            this.zombieMoves();
+        } else {
+            this.zombieDies(deathInterval);
+        }
+    }
+
+    zombieMoves() {
+        this.animateImages(this.IMAGES_WALKING);
+
+        if (this.currentImg >= this.IMAGES_WALKING.length) {
+            this.currentImg = 0;
+        }
+    }
+
+    zombieDies(deathInterval) {
+        this.animateImages(this.IMAGES_DYING);
+        this.zombieMoan.play();
+        this.breakBone.play();
+
+        if (this.currentImg == this.IMAGES_DYING.length) {
+            clearInterval(deathInterval);
+        }
     }
 }
