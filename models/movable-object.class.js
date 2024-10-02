@@ -75,12 +75,14 @@ class MovableObject extends DrawableObject {
     }
 
     jumpOnEnemy(obj) {
-        if (this.isInAir()) {
+        if (this.isInAir() && this.speedY <= 0) {  // Objekt muss fallen (speedY <= 0)
+            // Überprüfen, ob das Objekt oberhalb des Gegners ist und eine Kollision vorliegt
             return this.positionY + this.height >= obj.positionY &&
-                this.positionY <= obj.positionY + obj.height &&
-                this.positionX + (this.width * 0.1) >= obj.positionX &&
-                this.positionX <= obj.positionX + (obj.width);
+                   this.positionY + (this.height * 0.5) < obj.positionY &&  // Muss sich oberhalb des Gegners befinden
+                   this.positionX + (this.width * 0.1) >= obj.positionX &&
+                   this.positionX <= obj.positionX + obj.width;
         }
+        return false;
     }
 
     getHit() {
