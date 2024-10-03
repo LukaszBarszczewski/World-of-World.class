@@ -7,6 +7,7 @@ class World {
     keyboard;
     cameraPositionX = 0;
     statusBarChar = new StatusBarChar();
+    statusBarBoss = new StatusBarBoss();
     dagger = new Dagger();
     daggerCounter = new DaggerCounter();
     availableDaggers = 0;
@@ -17,6 +18,13 @@ class World {
     throwableObjects = [];
     canThrowDagger = true;
 
+    /**
+     * Creates a new instance of the game world.
+     * 
+     * @param {HTMLCanvasElement} canvas - The canvas element where the game world is drawn.
+     * @param {Object} keyboard - The object that captures keyboard inputs.
+     * 
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -27,22 +35,37 @@ class World {
         this.checkThrowObjects();
     }
 
+    /**
+     * Checks for collisions in the game world, including collisions with enemies and collectible daggers.
+     * This function is executed at regular intervals.
+     * 
+     */
     checkCollisions() {
         setInterval(() => {
             this.collisionsWithEnemies();
         }, 1000 / 20);
 
         setInterval(() => {
-           this.collectDaggers();
+            this.collectDaggers();
         }, 1000 / 60);
     }
 
+    /**
+     * Collects daggers by checking if the character collides with any daggers in the level.
+     * 
+     */
     collectDaggers() {
         this.level.daggers.forEach((dagger) => {
             this.increaseAmountOfDaggers(dagger);
         });
     }
 
+    /**
+     * Increases the number of available and collected daggers if the character collects a dagger.
+     * 
+     * @param {Object} dagger - The dagger object to be collected.
+     * 
+     */
     increaseAmountOfDaggers(dagger) {
         if (this.character.isColliding(dagger)) {
             this.dagger.collect(dagger);
@@ -55,6 +78,10 @@ class World {
         }
     }
 
+    /**
+     * Handles the behavior when the character or throwable objects collide with enemies or the final boss.
+     * 
+     */
     collisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
 
@@ -66,6 +93,13 @@ class World {
         });
     }
 
+    /**
+     * Checks if a dagger hits an enemy or the final boss and applies damage if necessary.
+     * 
+     * @param {Object} dagger - The dagger being thrown.
+     * @param {Object} enemy - The enemy or boss to check for collision.
+     * 
+     */
     daggerHitAbility(dagger, enemy) {
         if (dagger.isColliding(enemy) && !enemy.dead()) {
             this.daggerHitsZombie(enemy, dagger);
@@ -98,6 +132,7 @@ class World {
     daggerHitsEndboss(dagger) {
         this.endboss.getHit();
         this.throwableObjects.splice(this.throwableObjects.indexOf(dagger), 1);
+        this.statusBarBoss.setPercentage(this.endboss.hp);
     }
 
     characterBounce(enemy) {
@@ -112,6 +147,10 @@ class World {
         this.statusBarChar.setPercentage(this.character.hp);
     }
 
+    /**
+     * Throws a dagger if the conditions are met, such as the character not being dead and there being daggers available.
+     * 
+     */
     checkThrowObjects() {
         setInterval(() => {
             if (this.keyboard.ENTER && !this.character.dead() && this.canThrowDagger && this.availableDaggers > 0) {
@@ -124,12 +163,16 @@ class World {
         }, 1000 / 60);
     }
 
+    /**
+     * Throws a dagger from the character's current position, reducing the number of available daggers.
+     * 
+     */
     throwDagger() {
         let dagger = new ThrowableObject(this.character.positionX + 100, this.character.positionY);
-                this.throwableObjects.push(dagger);
-                this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
-                this.availableDaggers--;
-                this.throwingDaggerSound.play();
+        this.throwableObjects.push(dagger);
+        this.canThrowDagger = false; // Verhindert das Werfen eines weiteren Dolches bis die Taste losgelassen wird
+        this.availableDaggers--;
+        this.throwingDaggerSound.play();
     }
 
     calculateDistance() {
@@ -142,8 +185,14 @@ class World {
     setWorld() {
         this.endboss.world = this;
         this.character.world = this;
+        this.statusBarBoss.world = this;
     }
 
+    /**
+     * Draws all game objects, such as the character, enemies, and background, onto the canvas.
+     * This function is called repeatedly for rendering the game world.
+     * 
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -153,6 +202,8 @@ class World {
 
         this.daggerCounter.positionX = -this.cameraPositionX + 50;
 
+        this.statusBarBoss.positionX = this.endboss.positionX + 100;
+
         //die Reihenfolge der hinzuzufügenden Objekte ist entscheidend - diese Funktion wird mehmals pro Sekunde aufgerufen
         // und die Objekte Schicht für Schicht gezeichnet, was dazu führt, dass z.B. das zweite Objekt über das erste drüber gezeichnet wird
         this.addObjectsToMap(this.level.backgroundObjects);
@@ -161,6 +212,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.daggers);
         this.addToMap(this.statusBarChar);
+        this.addToMap(this.statusBarBoss);
         this.addToMap(this.daggerCounter);
         this.addToMap(this.endboss);
         this.addToMap(this.character);
@@ -177,6 +229,10 @@ class World {
         });
     }
 
+    /**
+     * Draws the number of available daggers on the canvas.
+     * 
+     */
     drawDaggerCount() {
         this.ctx.font = "20px Protest Guerrilla";
         this.ctx.fillStyle = "black";

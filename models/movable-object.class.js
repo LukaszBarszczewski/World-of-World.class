@@ -3,7 +3,6 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 0.7;
     otherDirection = false;
-    nineZeroDegTurn = false;
     hp = 100;
     lastHit = 0;
     zombieMoan = new Audio('audio/zombie-when-char-hitted.mp3');

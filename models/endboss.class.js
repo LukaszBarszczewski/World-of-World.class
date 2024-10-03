@@ -96,7 +96,6 @@ class Endboss extends MovableObject {
     height = 450;
     distance;
     goesBack = false;
-    hp = 100;
     aggroActivated = false;
     hurt = false;
     hurtSound = new Audio('audio/boss-hurt.mp3');
