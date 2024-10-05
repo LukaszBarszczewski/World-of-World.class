@@ -1,4 +1,32 @@
-class MovableObject extends DrawableObject {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: movable-object.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: movable-object.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class MovableObject extends DrawableObject {
     speedX = 0.15;
     speedY = 0;
     acceleration = 0.7;
@@ -73,7 +101,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.positionY < 190;
+            return this.positionY &lt; 190;
         }
     }
 
@@ -89,10 +117,10 @@ class MovableObject extends DrawableObject {
      * @returns {boolean} - True if a collision is detected, false otherwise.
      */
     isColliding(obj) {
-        return (this.positionX + (this.width * 0.5)) >= obj.positionX &&
-            this.positionX <= (obj.positionX + (obj.width * 0.5)) &&
-            (this.positionY + this.height) >= obj.positionY &&
-            this.positionY <= (obj.positionY + obj.height);
+        return (this.positionX + (this.width * 0.5)) >= obj.positionX &amp;&amp;
+            this.positionX &lt;= (obj.positionX + (obj.width * 0.5)) &amp;&amp;
+            (this.positionY + this.height) >= obj.positionY &amp;&amp;
+            this.positionY &lt;= (obj.positionY + obj.height);
         // obj.onCollisionCourse;  Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
@@ -108,10 +136,10 @@ class MovableObject extends DrawableObject {
      * @returns {boolean} - True if a collision with the boss is detected, false otherwise.
      */
     isCollidingWithBoss(obj) {
-        return this.positionX + (this.width * 0.1)>= obj.positionX &&
-            this.positionX <= (obj.positionX + (obj.width * 0.1)) &&
-            (this.positionY + this.height) >= obj.positionY &&
-            this.positionY <= (obj.positionY + obj.height);
+        return this.positionX + (this.width * 0.1)>= obj.positionX &amp;&amp;
+            this.positionX &lt;= (obj.positionX + (obj.width * 0.1)) &amp;&amp;
+            (this.positionY + this.height) >= obj.positionY &amp;&amp;
+            this.positionY &lt;= (obj.positionY + obj.height);
     }
 
     /**
@@ -126,12 +154,12 @@ class MovableObject extends DrawableObject {
      * @returns {boolean} - True if the object has successfully jumped on the enemy.
      */
     jumpOnEnemy(obj) {
-        if (this.isInAir() && this.speedY <= 0) {  // Objekt muss fallen (speedY <= 0)
+        if (this.isInAir() &amp;&amp; this.speedY &lt;= 0) {  // Objekt muss fallen (speedY &lt;= 0)
             // Überprüfen, ob das Objekt oberhalb des Gegners ist und eine Kollision vorliegt
-            return this.positionY + this.height >= obj.positionY &&
-                   this.positionY + (this.height * 0.5) < obj.positionY &&  // Muss sich oberhalb des Gegners befinden
-                   this.positionX + (this.width * 0.1) >= obj.positionX &&
-                   this.positionX <= obj.positionX + obj.width;
+            return this.positionY + this.height >= obj.positionY &amp;&amp;
+                   this.positionY + (this.height * 0.5) &lt; obj.positionY &amp;&amp;  // Muss sich oberhalb des Gegners befinden
+                   this.positionX + (this.width * 0.1) >= obj.positionX &amp;&amp;
+                   this.positionX &lt;= obj.positionX + obj.width;
         }
         return false;
     }
@@ -144,7 +172,7 @@ class MovableObject extends DrawableObject {
      */
     getHit() {
         this.hp -= 20;
-        if (this.hp < 0) {
+        if (this.hp &lt; 0) {
             this.hp = 0;
         } else {
             this.lastHit = new Date().getTime();    // Milisekunden, die seit dem 1.01.1970 vergangen sind
@@ -160,7 +188,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;   // Zeit zwischen jetzt und dem letzten Hit (in ms)
         timePassed = timePassed / 1000;     //in s
-        return timePassed < 0.8;
+        return timePassed &lt; 0.8;
     }
 
     dead() {
@@ -169,23 +197,46 @@ class MovableObject extends DrawableObject {
 
     
     notInAirDeadOrHurt() {
-        if (!this.isInAir() && !this.dead() && !this.isHurt()) {
+        if (!this.isInAir() &amp;&amp; !this.dead() &amp;&amp; !this.isHurt()) {
             return true;
         }
         return false;
     }
 
     notDeadOrHurt() {
-        if (!this.dead() && !this.isHurt()) {
+        if (!this.dead() &amp;&amp; !this.isHurt()) {
             return true;
         }
         return false;
     }
 
     hurtButNotDead() {
-        if (this.isHurt() && !this.dead()) {
+        if (this.isHurt() &amp;&amp; !this.dead()) {
             return true;
         }
         return false;
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat Oct 05 2024 16:25:23 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
