@@ -1,6 +1,4 @@
 body {
-    height: 100vh;
-    overflow: hidden;
     margin: 0;
     font-family: "Cinzel", serif;
     font-optical-sizing: auto;
@@ -8,6 +6,18 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.main-body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.impressum-body {
+    height: 100vh;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
 
 #content {
@@ -90,6 +100,11 @@ header {
     transition: all 0.3s ease;
 }
 
+.btn a {
+    text-decoration: none;
+    color: black;
+}
+
 .btn h3 {
     margin: 0 20px;
 }
@@ -99,6 +114,12 @@ header {
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     text-decoration: underline;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .game-rules {
@@ -185,11 +206,25 @@ header {
     canvas {
         height: 100vh;
     }
+
+    .impressum-body {
+        height: 100%;
+    }
 }
 
 @media (max-width: 1200px) {
     .game-rules-text {
         width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .address-contact span {
+        font-size: 10px;
+    }
+
+    .address-contact h2 {
+        font-size: 16px;
     }
 }
 
@@ -217,4 +252,29 @@ header {
     margin: 0;
     padding: 0;
     font-size: 20px;
+}
+
+.impressum {
+    width: 60%;
+    height: 60%;
+}
+
+.impressum-headline {
+    
+}
+
+.impressum-headline h1 {
+    color: rgb(224, 150, 11);
+    text-decoration: underline;
+}
+
+.impressum-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.address-contact {
+    background-color: blanchedalmond;
+    padding: 32px;
 }
