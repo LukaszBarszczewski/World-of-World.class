@@ -73,6 +73,9 @@ class Zombie1 extends MovableObject {
         this.speedX = this.speedX + Math.random() * 0.5;
 
         this.animate();
+
+        addSoundToGlobalList(this.zombieMoan);
+        addSoundToGlobalList(this.breakBone);
     }
 
     animate() {

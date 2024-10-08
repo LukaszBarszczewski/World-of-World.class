@@ -278,3 +278,26 @@ header {
     background-color: blanchedalmond;
     padding: 32px;
 }
+
+.mute-btn, .music-note-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: rgb(224, 150, 11);
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+}
+
+.mute-btn:hover, .music-note-btn:hover {
+    color: rgb(255, 255, 255);
+}
+
+.mute-btn {
+    right: 60px;
+}
+
+.music-note-btn {
+    right: 20px;
+    height: 36px;
+}

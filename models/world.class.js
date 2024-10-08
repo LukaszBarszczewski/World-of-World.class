@@ -33,6 +33,9 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.checkThrowObjects();
+        addSoundToGlobalList(this.collectDaggerSound);
+        addSoundToGlobalList(this.allDaggersCollectedSound);
+        addSoundToGlobalList(this.throwingDaggerSound);
     }
 
     /**

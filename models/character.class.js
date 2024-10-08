@@ -90,6 +90,10 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DYING);
         this.applyGravity();
         this.animate();
+        addSoundToGlobalList(this.jumpingSound);
+        addSoundToGlobalList(this.walkingSound);
+        addSoundToGlobalList(this.characterGetsHittedSound);
+        addSoundToGlobalList(this.dyingSound);
     }
 
     /**

@@ -35,3 +35,27 @@ function closeGameRules() {
         gameRules.remove();
     }
 }
+
+let allSounds = [];
+let soundIsMuted = false;
+
+// Funktion zum Hinzufügen von Sounds zur globalen Liste
+function addSoundToGlobalList(sound) {
+    allSounds.push(sound);
+}
+
+function toggleMute() {
+    const muteButton = document.getElementById('muteButton');
+    soundIsMuted = !soundIsMuted;
+    
+    // Alle Audio-Dateien durchgehen und stummschalten oder aktivieren
+    const allAudio = [mainMenuMusic, inGameSoundtrack, failScreenMusic, winGameSound];
+    allAudio.forEach(audio => audio.muted = soundIsMuted);
+
+    allSounds.forEach(sound => {
+        sound.muted = soundIsMuted;
+    });
+    
+    // Symbol ändern
+    muteButton.textContent = soundIsMuted ? '🔇' : '🔊';
+}

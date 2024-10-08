@@ -17,8 +17,6 @@ class StatusBarBoss extends DrawableObject {
         this.width = 250;
         this.height = 60;
         this.setPercentage(100);
-        console.log(this.world);
-        
     }
 
     setPercentage(percentage) {

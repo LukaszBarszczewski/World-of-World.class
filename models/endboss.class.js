@@ -109,8 +109,10 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_AGGRO);
         this.loadImages(this.IMAGES_HURTING);
-
         this.animate();
+        addSoundToGlobalList(this.hurtSound);
+        addSoundToGlobalList(this.dyingSound);
+        addSoundToGlobalList(this.aggroSound);
     }
 
     /**
