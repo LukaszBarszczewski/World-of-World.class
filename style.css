@@ -185,11 +185,6 @@ header {
     }
 }
 
-@media only screen and (max-width: 835px) {
-    .mobile-keys-section {
-    }
-}
-
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
@@ -263,10 +258,6 @@ header {
 .impressum {
     width: 60%;
     height: 60%;
-}
-
-.impressum-headline {
-    
 }
 
 .impressum-headline h1 {
