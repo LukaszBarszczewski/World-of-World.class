@@ -45,17 +45,17 @@ function addSoundToGlobalList(sound) {
 }
 
 function toggleMute() {
-    const muteButton = document.getElementById('muteButton');
-    soundIsMuted = !soundIsMuted;
+        const muteButton = document.getElementById('muteButton');
+        soundIsMuted = !soundIsMuted;
+        
+        // Alle Audio-Dateien durchgehen und stummschalten oder aktivieren
+        const allAudio = [mainMenuMusic, inGameSoundtrack, failScreenMusic, winGameSound];
+        allAudio.forEach(audio => audio.muted = soundIsMuted);
     
-    // Alle Audio-Dateien durchgehen und stummschalten oder aktivieren
-    const allAudio = [mainMenuMusic, inGameSoundtrack, failScreenMusic, winGameSound];
-    allAudio.forEach(audio => audio.muted = soundIsMuted);
-
-    allSounds.forEach(sound => {
-        sound.muted = soundIsMuted;
-    });
-    
-    // Symbol ändern
-    muteButton.textContent = soundIsMuted ? '🔇' : '🔊';
+        allSounds.forEach(sound => {
+            sound.muted = soundIsMuted;
+        });
+        
+        // Symbol ändern
+        muteButton.textContent = soundIsMuted ? '🔇' : '🔊';
 }
