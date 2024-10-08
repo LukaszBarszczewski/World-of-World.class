@@ -169,14 +169,30 @@ header {
     animation: fadeInScale 2s ease forwards;
 }
 
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-
+@media only screen and (max-width: 1370px) {
     header,
     .key-legend-section {
         display: none;
+    }
+
+    .mobile-keys-section {
+        display: flex !important;
+        justify-content: space-around;
+        position: relative;
+        bottom: 68px;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 835px) {
+    .mobile-keys-section {
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
     }
 
     .game-rules-text {
@@ -189,16 +205,6 @@ header {
 
     .btn h3 {
         margin: 0;
-    }
-
-    .mobile-keys-section {
-        display: flex !important;
-        justify-content: space-around;
-        position: relative;
-        bottom: 68px;
-        width: 100%;
-        margin-top: 10px;
-        gap: 140px;
     }
 }
 
@@ -279,25 +285,15 @@ header {
     padding: 32px;
 }
 
-.mute-btn, .music-note-btn {
+.mute-btn {
     background-color: transparent;
     border: none;
     font-size: 24px;
-    color: rgb(224, 150, 11);
     cursor: pointer;
     position: absolute;
     top: 20px;
 }
 
-.mute-btn:hover, .music-note-btn:hover {
-    color: rgb(255, 255, 255);
-}
-
 .mute-btn {
     right: 60px;
-}
-
-.music-note-btn {
-    right: 20px;
-    height: 36px;
 }
