@@ -5,9 +5,8 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     hp = 100;
     lastHit = 0;
-    zombieMoan = new Audio('audio/zombie-when-char-hitted.mp3');
     breakBone = new Audio('audio/break-bone.mp3')
-
+    zombieMoan = new Audio('audio/zombie-when-char-hitted.mp3');
 
     moveLeft() {
         if (this.notDeadOrHurt()) {

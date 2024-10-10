@@ -39,8 +39,8 @@ function closeGameRules() {
 let allSounds = [];
 let soundIsMuted = false;
 
-// Funktion zum Hinzufügen von Sounds zur globalen Liste
 function addSoundToGlobalList(sound) {
+    sound.muted = soundIsMuted;
     allSounds.push(sound);
 }
 
@@ -48,7 +48,6 @@ function toggleMute() {
         const muteButton = document.getElementById('muteButton');
         soundIsMuted = !soundIsMuted;
         
-        // Alle Audio-Dateien durchgehen und stummschalten oder aktivieren
         const allAudio = [mainMenuMusic, inGameSoundtrack, failScreenMusic, winGameSound];
         allAudio.forEach(audio => audio.muted = soundIsMuted);
     
@@ -56,6 +55,5 @@ function toggleMute() {
             sound.muted = soundIsMuted;
         });
         
-        // Symbol ändern
         muteButton.textContent = soundIsMuted ? '🔇' : '🔊';
-}
+    }

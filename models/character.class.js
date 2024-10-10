@@ -79,7 +79,7 @@ class Character extends MovableObject {
     walkingSound = new Audio('audio/main-char-step.mp3');
     jumpingSound = new Audio('audio/jump.mp3');
     dyingSound = new Audio('audio/main-char-die.mp3');
-    characterGetsHittedSound = new Audio('audio/char-gets-hit.mp3');
+    characterGetsHitSound = new Audio('audio/char-gets-hit.mp3');
     soundPlayed = false;
 
     constructor() {
@@ -92,8 +92,9 @@ class Character extends MovableObject {
         this.animate();
         addSoundToGlobalList(this.jumpingSound);
         addSoundToGlobalList(this.walkingSound);
-        addSoundToGlobalList(this.characterGetsHittedSound);
+        addSoundToGlobalList(this.characterGetsHitSound);
         addSoundToGlobalList(this.dyingSound);
+        addSoundToGlobalList(this.zombieMoan);
     }
 
     /**
@@ -211,7 +212,7 @@ class Character extends MovableObject {
 
     hurtSound() {
         if (!this.soundPlayed) {
-            this.characterGetsHittedSound.play();
+            this.characterGetsHitSound.play();
             this.soundPlayed = true;
         }
     }
