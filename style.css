@@ -15,8 +15,8 @@ body {
 
 .impressum-body {
     height: 100vh;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -170,6 +170,7 @@ header {
 }
 
 @media only screen and (max-width: 1370px) {
+
     header,
     .key-legend-section {
         display: none;
@@ -182,6 +183,12 @@ header {
         bottom: 68px;
         width: 100%;
         margin-top: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .game-rules-text {
+        width: 80%;
     }
 }
 
@@ -203,6 +210,12 @@ header {
     }
 }
 
+@media only screen and (max-width: 660px) {
+    .rotate-notification {
+        display: flex !important; /* Show the notification */
+    }
+}
+
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
@@ -210,12 +223,6 @@ header {
 
     .impressum-body {
         height: 100%;
-    }
-}
-
-@media (max-width: 1200px) {
-    .game-rules-text {
-        width: 80%;
     }
 }
 
@@ -287,4 +294,22 @@ header {
 
 .mute-btn {
     right: 60px;
+}
+
+.rotate-notification {
+    display: none; /* Initial state is hidden */
+    position: absolute;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 32px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.rotate-notification p {
+    margin: 0;
 }
