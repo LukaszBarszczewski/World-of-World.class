@@ -192,6 +192,12 @@ header {
     }
 }
 
+@media (max-width: 1070px) {
+    .mute-btn span {
+        display: none;
+    }
+}
+ 
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
@@ -212,7 +218,7 @@ header {
 
 @media only screen and (max-width: 660px) {
     .rotate-notification {
-        display: flex !important; /* Show the notification */
+        display: flex !important;
     }
 }
 
@@ -290,14 +296,22 @@ header {
     cursor: pointer;
     position: absolute;
     top: 20px;
-}
-
-.mute-btn {
     right: 60px;
 }
 
+.mute-btn p {
+    margin: 16px 0 0 0;
+}
+
+.mute-btn span {
+    font-size: 16px;
+    color: rgb(224, 150, 11);
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+}
+
 .rotate-notification {
-    display: none; /* Initial state is hidden */
+    display: none;
     position: absolute;
     z-index: 9999;
     width: 100vw;

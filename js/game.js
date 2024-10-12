@@ -39,7 +39,7 @@ function drawStartScreen() {
     ctx.fillStyle = "rgb(224, 150, 11)";
     ctx.font = "30px Cinzel";
     ctx.textAlign = "center";
-    ctx.fillText("Press Enter to Start", canvasStartScreen.width / 2, canvasStartScreen.height / 2);
+    ctx.fillText("Press Enter (mobile: throw) to Start", canvasStartScreen.width / 2, canvasStartScreen.height / 2);
     mainMenuMusic.play();
 }
 
@@ -168,6 +168,10 @@ function bindMobileButtons() {
     document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.ENTER = true;
+
+        if (canvasStartScreen.style.display !== "none" || canvasFailScreen.style.display !== "none" || canvasWinScreen.style.display !== "none") {
+            manageGameStage();
+        }
     });
     
     document.getElementById('btnThrow').addEventListener('touchend', (e) => {
